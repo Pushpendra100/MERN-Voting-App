@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "pushpendra pal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
