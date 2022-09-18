@@ -1,39 +1,42 @@
 import { addError,removeError } from "./error";
 import {SET_CURRENT_USER} from "../actionTypes"
-import api from "../../services/api"
+import {setsToken, call} from "../../services/api"
+import axios from "axios";
 
-export const setCurrentUser = user => ({
-    type: SET_CURRENT_USER,
-    user
-});
+export const setCurrentUser = user =>async(dispatch) => {
+    dispatch({
+        type: SET_CURRENT_USER,
+         user
+    });
+};
   
 export const setToken = token => {
-    api.setToken(token);
+    setsToken(token);
 };
 
 export const logout = () => {
     return dispatch => {
         localStorage.clear();
-        api.setToken(null);
+        setsToken(null);
 
         dispatch(setCurrentUser({}));
         dispatch(removeError());
     }
 }
 
-export const authUser = (path, data) =>{
-    return async dispatch => {
+export const authUser = (path, userData) => async(dispatch) =>{
         try {
-            const {token, ...user} = await api.call('post', `auth/${path}`, data);
+            const config = {headers:{"Content-Type":"application/json"}};
 
-            localStorage.setItem('jwtToken', token);
-            api.setToken(token);
+            const {data} = await axios.post(`/api/auth/${path}`,userData,config);
 
-            dispatch(setCurrentUser(user));
+            localStorage.setItem('jwtToken', data.token);
+            setsToken(data.token);
+
+            dispatch(setCurrentUser(data.username));
             dispatch(removeError());
+
         }catch(err){
-            const {error} = err.response.data;
-            dispatch(addError(error));
+            dispatch(addError(err.response.data.message));
         }
-    }
 };

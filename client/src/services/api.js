@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const setToken = token =>{
+export const setsToken = token =>{
     if(token){
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }else{
@@ -9,8 +9,9 @@ export const setToken = token =>{
 };
 
 export const call = async (method, path, data) => {
-    const response = await axios[method](`/${path}`, data);
-    return response.data
+
+    const config = {headers:{"Content-Type":"application/json"}};
+    const response = await axios[method](`${path}`, data, config);
+    return response.data;
 };
 
-export default {call, setToken};

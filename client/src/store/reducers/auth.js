@@ -5,7 +5,7 @@ const DEFAULT_STATE = {
     user:{}, 
 };
 
-export default (state = DEFAULT_STATE, action) =>{
+export const userReducer =  (state = DEFAULT_STATE, action) =>{
 
     switch (action.type) {
         case SET_CURRENT_USER:

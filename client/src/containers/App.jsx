@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Provider} from "react-redux";
 import decode from "jwt-decode";
+// import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 
 import {store} from "../store"
 import { setCurrentUser,addError, setToken } from '../store/actions';
-
+import Auth from "../components/Auth";
+import ErrorMessage from '../components/ErrorMessage';
 
 if(localStorage.jwtToken){
 
@@ -20,9 +22,13 @@ if(localStorage.jwtToken){
 }
 
 const App = () =>{
+
     return (
       <Provider store={store}>
-          <div>App works</div>
+
+        <Auth authType='login'/>
+            <ErrorMessage/>
+
       </Provider>
     )
 }
