@@ -36,11 +36,7 @@ const Auth = (props) => {
         if(error){
             dispatch(removeError());
         };
-
-        // if(isAuthenticated){
-        //     navigate("/account");
-        // }
-    }, [isAuthenticated, navigate, dispatch,  error])
+    }, [isAuthenticated, navigate, dispatch,  error]);
 
         return (
         <Fragment>
