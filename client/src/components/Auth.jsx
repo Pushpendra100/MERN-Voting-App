@@ -1,5 +1,6 @@
 import React,{useState,useEffect, Fragment} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 
 import {authUser} from "../store/actions";
@@ -8,8 +9,9 @@ import { removeError } from '../store/actions';
 const Auth = (props) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const {error} = useSelector(state => state.auth);
+    const {error, isAuthenticated} = useSelector(state => state.auth);
 
 
 
@@ -28,6 +30,9 @@ const Auth = (props) => {
     };
 
     useEffect(() => {
+        if(isAuthenticated){
+            navigate("/");
+        }
         if(error){
             dispatch(removeError());
         };
@@ -35,7 +40,7 @@ const Auth = (props) => {
         // if(isAuthenticated){
         //     navigate("/account");
         // }
-    }, [dispatch,  error])
+    }, [isAuthenticated, navigate, dispatch,  error])
 
         return (
         <Fragment>
@@ -44,7 +49,7 @@ const Auth = (props) => {
                 <input type="text" value={username} name="username" onChange={handleChange} autoComplete="on" />
 
             <label htmlFor="password">password</label>
-                <input type="password" value={password} name="password" onChange={handleChange} autoComplete="on" />
+                <input type="password" value={password} name="password" onChange={handleChange} autoComplete="off" />
 
             <button type="submit">Submit</button>
             </form>
