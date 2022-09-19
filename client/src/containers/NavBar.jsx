@@ -24,7 +24,7 @@ const NavBar = () => {
           <li><Link to='/login'>Login</Link></li> 
           <li><button onClick={handleLogout}>Logout</button></li>     
       </ul>
-      {isAuthenticated && <p>Logged in as {user}</p>}
+      {isAuthenticated && <p>Logged in as {user.username}</p>}
     </div>
   )
 }
