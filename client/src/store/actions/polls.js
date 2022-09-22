@@ -1,5 +1,5 @@
-import {setsToken, call} from "../../services/api"
-import { SET_POLLS, SET_CURRENT_POLL } from "../actionTypes";
+import {call} from "../../services/api"
+import { SET_POLLS, SET_CURRENT_POLL,SET_CURRENT_POLL_REQUEST } from "../actionTypes";
 import {addError, removeError} from "./error";
 
 
@@ -11,7 +11,7 @@ export const setPolls = polls => ({
 
 export const setCurrentPoll = poll => ({
     type: SET_CURRENT_POLL,
-    poll
+    poll:poll
 });
 
 
@@ -52,7 +52,10 @@ export const createPoll = data => async(dispatch) =>{
 
 export const getCurrentPoll = path => async(dispatch) =>{
     try{
+        dispatch({type:SET_CURRENT_POLL_REQUEST});
+
         const poll = await call('get',`/api/polls/${path}`);
+
         dispatch(setCurrentPoll(poll));
         dispatch(removeError());
     }catch(err){
