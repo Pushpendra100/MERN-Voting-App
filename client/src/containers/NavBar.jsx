@@ -34,6 +34,7 @@ useEffect(() => {
           <li><Link to='/register'>Register</Link></li>
           <li><Link to='/login'>Login</Link></li> 
           <li><Link to='/test'>Test</Link></li> 
+          <li><Link to='/poll/new'>Create New Poll</Link></li> 
           <li><button onClick={handleLogout}>Logout</button></li>     
       </ul>
       {isAuthenticated && <p>Logged in as {name}</p>}

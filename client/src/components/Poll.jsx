@@ -67,11 +67,11 @@ const Poll = (props) => {
             {
                 !poll? (<h1>loading . . .</h1>):(
                     <div>
-                   <h1>hello</h1>
                     <h3>{poll.question}</h3>
                     <div>{answers}</div>
                     <ErrorMessage/>
-                    <Pie data={data}/>
+                    {poll.voted.length?<Pie data={data}/>:<div>No votes till now..</div>}
+                    
                 </div>
             )
             }

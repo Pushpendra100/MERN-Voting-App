@@ -2,6 +2,7 @@ import React from 'react';
 import {Routes,Route} from "react-router-dom";
 
 import AuthPage from '../pages/AuthPage';
+import CreatePollPage from '../pages/CreatePollPage';
 import HomePage from '../pages/HomePage';
 import PollPage from '../pages/PollPage';
 import TestPage from '../pages/TestPage';
@@ -15,6 +16,7 @@ const RouteViews = () => {
             <Route exact path='/login' element={<AuthPage authType="login"/>}/>
             <Route exact path='/register' element={<AuthPage authType="register"/>}/>
             <Route exact path='/poll/:id' element={<PollPage/>} />
+            <Route exact path='/poll/new' element={<CreatePollPage/>}/>
             <Route exact path='/test' element={<TestPage/>} />
         </Routes>
     </main>

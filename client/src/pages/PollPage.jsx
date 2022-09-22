@@ -9,6 +9,7 @@ const PollPage = () => {
 
     const params = useParams();
 
+
   return (
     <div>
         <Poll id={params.id}/>
