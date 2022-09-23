@@ -65,23 +65,25 @@ const handleSubmit = (e) =>{
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="question">Question</label>
-        <input type="text" name='question' value={poll.question} onChange={handleChange} />
+      <form className='form' onSubmit={handleSubmit}>
+        <label className='form-label' htmlFor="question">Question</label>
+        <input className='form-input' type="text" name='question' value={poll.question} onChange={handleChange} />
 
         {
           poll.options.map((option,i)=>{
           return(
           <div key={i} id={i}>
-            <label htmlFor="">Option</label>
-            <input type="text" value={option} onChange={(event)=>handleAnswer(event)} />
+            <label className='form-label' htmlFor="">Option {i + 1}</label>
+            <input className='form-input' type="text" value={option} onChange={(event)=>handleAnswer(event)} />
           </div>
         )
         })
         }
+        <div className="button-center">
+        <button className='button' type='button' onClick={addAnswer}>Add options</button>
+        <button className='button' type="submit">Submit</button>
+        </div>
 
-        <button type='button' onClick={addAnswer}>Add options</button>
-        <button type="submit">Submit</button>
       </form>
     </div>
   )

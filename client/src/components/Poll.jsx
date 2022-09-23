@@ -39,7 +39,7 @@ const Poll = (props) => {
     
 
     const answers = poll && poll.options.map(option => (
-        <button key={option._id} onClick={()=> dispatch(vote(poll._id,{answer: option.option}))}>{option.option}</button>
+        <button className='button' key={option._id} onClick={()=> dispatch(vote(poll._id,{answer: option.option}))}>{option.option}</button>
     ));
 
     const data = poll && { 
@@ -67,10 +67,12 @@ const Poll = (props) => {
             {
                 !poll? (<h1>loading . . .</h1>):(
                     <div>
-                    <h3>{poll.question}</h3>
-                    <div>{answers}</div>
+                    <h3 className='poll-title'>{poll.question}</h3>
+                    <div className='button-center'>{answers}</div>
                     <ErrorMessage/>
+                    <div className='poll-chart'>
                     {poll.voted.length?<Pie data={data}/>:<div>No votes till now..</div>}
+                    </div>
                     
                 </div>
             )

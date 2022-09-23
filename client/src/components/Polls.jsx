@@ -20,13 +20,13 @@ const Polls = () => {
   return (
     <Fragment>
     {auth.isAuthenticated && (
-        <div>
-        <button onClick={()=>dispatch(getPolls())}>All polls</button>
-        <button onClick={()=>dispatch(getUserPolls())}>My polls</button>
+        <div className='button-center'>
+        <button className='button' onClick={()=>dispatch(getPolls())}>All polls</button>
+        <button className='button' onClick={()=>dispatch(getUserPolls())}>My polls</button>
         </div>
     )}
-    <ul>
-        {polls.map(poll => (<Link key={poll._id} to={`/poll/${poll._id}`}>{poll.question}</Link>))}
+    <ul className='polls'>
+        {polls.map(poll => (<li key={poll._id} onClick={() => handleSelect(poll._id)}>{poll.question}</li>))}
     </ul>
     </Fragment>
   )

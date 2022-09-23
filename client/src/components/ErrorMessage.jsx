@@ -7,7 +7,7 @@ const ErrorMessage = () => {
     const error = useSelector(state => state.error);
 
     return (<Fragment>
-        {error && <div>{error.message}</div>}
+        {error.message && <div className='error'>{error.message}</div>}
     </Fragment>
     )
 }

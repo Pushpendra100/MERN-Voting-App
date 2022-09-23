@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, } from 'react-redux';
 
@@ -28,16 +28,17 @@ useEffect(() => {
   
 
   return (
-    <div>
-      <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/register'>Register</Link></li>
-          <li><Link to='/login'>Login</Link></li> 
-          <li><Link to='/test'>Test</Link></li> 
-          <li><Link to='/poll/new'>Create New Poll</Link></li> 
-          <li><button onClick={handleLogout}>Logout</button></li>     
+    <div className='navbar'>
+    <div className='container'>
+    <ul className='navbar-container'>
+          <li><Link className='navbar-brand' to='/'>Home</Link></li>
+          {!isAuthenticated && <Fragment><li><Link className='navbar-item' to='/register'>Register</Link></li>
+                                         <li><Link className='navbar-item' to='/login'>Login</Link></li></Fragment>}
+          {isAuthenticated && <Fragment><li><Link className='navbar-item' to='/poll/new'>Create Poll</Link></li>
+                                        <li><a className='navbar-item' onClick={handleLogout}>Logout</a></li></Fragment>}     
       </ul>
-      {isAuthenticated && <p>Logged in as {name}</p>}
+      {isAuthenticated && <p className='navbar-user'>Logged in as {name}</p>}
+    </div>
     </div>
   )
 }

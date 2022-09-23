@@ -1,0 +1,11 @@
+.poll-title{
+    color: var(--blue);
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+.poll-chart{
+    width: 40%;
+    margin: 1rem auto;
+}

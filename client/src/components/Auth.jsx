@@ -40,14 +40,15 @@ const Auth = (props) => {
 
         return (
         <Fragment>
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="username">username</label>
-                <input type="text" value={username} name="username" onChange={handleChange} autoComplete="on" />
+            <form className='form' onSubmit={handleSubmit}>
+            <label className='form-label' htmlFor="username">username</label>
+                <input className='form-input' type="text" value={username} name="username" onChange={handleChange} autoComplete="on" />
 
-            <label htmlFor="password">password</label>
-                <input type="password" value={password} name="password" onChange={handleChange} autoComplete="off" />
-
-            <button type="submit">Submit</button>
+            <label className='form-label' htmlFor="password">password</label>
+                <input className='form-input' type="password" value={password} name="password" onChange={handleChange} autoComplete="off" />
+            <div className="button-center">
+            <button className='button' type="submit">Submit</button>
+            </div>
             </form>
         </Fragment>
         )
