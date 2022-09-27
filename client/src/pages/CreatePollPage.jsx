@@ -22,7 +22,6 @@ const CreatePollPage = () => {
 
   return (
     <Fragment>
-        <ErrorMessage />
         <CreatePoll />
     </Fragment>
   )

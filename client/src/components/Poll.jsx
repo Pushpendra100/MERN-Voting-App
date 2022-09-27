@@ -1,34 +1,39 @@
 import React,{useEffect, Fragment} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Pie} from "react-chartjs-2";
-
+import {useAlert} from "react-alert";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 
-import { getCurrentPoll, vote } from '../store/actions';
-import ErrorMessage from './ErrorMessage';
+import { getCurrentPoll, vote,removeError } from '../store/actions';
+// import ErrorMessage from './ErrorMessage';
+import Loader from './Loader';
 
 
 const Poll = (props) => {
 
 
     const dispatch = useDispatch();
-
-
-
-    const {poll, loading} = useSelector(state => state.currentPoll)
-
-
-    useEffect(() => {   
-        dispatch(getCurrentPoll(props.id));
-
-    }, [dispatch,props.id]);
-
+    const alert = useAlert();
 
     ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-    // console.log(poll);
+    const {poll, loading,error,id:userId} = useSelector(state => ({loading:state.currentPoll.loading, poll:state.currentPoll.poll,error:state.error.message,id:state.auth.user.id}))
+
+    useEffect(() => {   
+        if(error){
+            alert.error(error);
+            dispatch(removeError());
+        };
+        dispatch(getCurrentPoll(props.id));
+
+
+
+    }, [dispatch,props.id, alert ,error]);
+
+
+
 
 
     
@@ -36,10 +41,28 @@ const Poll = (props) => {
         return ('#' + Math.random().toString(16).slice(2,8))
     };
 
-    
+    const handleVote = (id, answer) =>{
+        if(Date.parse(poll.finalTime) > Date.now()){
+            if(userId){
+                if(!poll.voted.includes(userId)){
+                    dispatch(vote(id, answer))
+                }else{
+                    alert.error("Already voted")
+                }
+            }else{
+                alert.error("Not logged in")
+            }
+
+
+        }else{
+            alert.error("This poll is ended");
+        }
+    };
+
+
 
     const answers = poll && poll.options.map(option => (
-        <button className='button' key={option._id} onClick={()=> dispatch(vote(poll._id,{answer: option.option}))}>{option.option}</button>
+        <button className='pollButton' key={option._id} onClick={()=> handleVote(poll._id,{answer: option.option},poll.finalTime)}>{option.option}</button>
     ));
 
     const data = poll && { 
@@ -56,25 +79,59 @@ const Poll = (props) => {
     };
     
 
+    let date, time
+    if(poll){
+        let finalTime = new Date(Date.parse(poll.finalTime))
+         date = finalTime.toLocaleTimeString();
+         time = finalTime.toDateString();
+    }
 
 
-
-
+    const handleCopy = () =>{
+        navigator.clipboard.writeText(window.location.href); 
+        alert.success("Link copied")
+    }
     
 
   return (
     <Fragment>
             {
-                !poll? (<h1>loading . . .</h1>):(
-                    <div>
-                    <h3 className='poll-title'>{poll.question}</h3>
-                    <div className='button-center'>{answers}</div>
-                    <ErrorMessage/>
-                    <div className='poll-chart'>
-                    {poll.voted.length?<Pie data={data}/>:<div>No votes till now..</div>}
-                    </div>
+                !poll? (<Loader/>):(
+                    <Fragment>
+                    <div className='pollDetails'>
+                                    <div className='pollDetailsOnlyCreator'>
+                                    {
+                                        (poll.user === userId || poll.user._id) && (
+                                            <Fragment>
+                                                    {Date.parse(poll.finalTime) > Date.now() && <p className='userPollBoxView'>{poll.view}</p> }
+                                                    {
+                                                    (<Fragment>
+                                                    {Date.parse(poll.finalTime) < Date.now()?(<p className='userPollBoxStatusEnded'>Ended</p>):(<p className='userPollBoxStatusGoingOn'>Going on</p>)}
+                                                        </Fragment>)
+                                                    }
+                                            </Fragment>)               
+                                    }
+                                    </div>
+
+                                    <div className='pollDetailsAllUser'>
+                                <button className='pollCopyLinkBtn' onClick={()=>handleCopy()}>Share</button>
+                                    <p className='pollDetailBoxTime'>{Date.parse(poll.finalTime) < Date.now()?"Ended on":"Ending on"} : {`${time} ${date}`}</p>
+                                    </div>
+                        </div>
+
+                        <div className='pollContainer'>
+                            <div className="pollBox">
+                            <h3 className='poll-title'>{poll.question}</h3>
+                            <div className='poll-options'>{answers}</div>
+                            {/* <ErrorMessage/> */}
+                            </div>
+                            <div className='pollChart'>
+
+                                        {poll.voted.length?<Pie data={data}/>:<div className='pollNoVote'>No votes till now...</div>}
+                            </div>
                     
                 </div>
+                </Fragment>
             )
             }
     </Fragment>

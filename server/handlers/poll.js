@@ -3,7 +3,7 @@ const db = require("../models");
 
 exports.showPolls = async(req, res, next) =>{
     try{
-        const polls = await db.Poll.find().populate("user",['username','id']);
+        const polls = await db.Poll.find({view:"public"}).populate("user",['username','id']);
          
         res.status(200).json(polls);
     }catch(err){
@@ -30,14 +30,15 @@ exports.createPoll = async (req, res, next) =>{
     try{
         const {id} = req.decoded;
         const user = await db.User.findById(id);
-        const {question, options} = req.body;
+        const {question, options,view,finalTime} = req.body;
 
         const poll = await db.Poll.create({
             question,
             user, 
+            view,
+            finalTime,
             options: options.map(option => ({option, votes:0}))
         });
-
         user.polls.push(poll._id);
         await user.save();
 

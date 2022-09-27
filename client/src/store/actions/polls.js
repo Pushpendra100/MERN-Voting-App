@@ -1,5 +1,5 @@
 import {call} from "../../services/api"
-import { SET_POLLS, SET_CURRENT_POLL,SET_CURRENT_POLL_REQUEST } from "../actionTypes";
+import { SET_POLLS,SET_POLLS_REQUEST, SET_CURRENT_POLL,SET_CURRENT_POLL_REQUEST } from "../actionTypes";
 import {addError, removeError} from "./error";
 
 
@@ -17,6 +17,7 @@ export const setCurrentPoll = poll => ({
 
 export const getPolls = () => async(dispatch) =>{
     try{
+        dispatch({type:SET_POLLS_REQUEST});
         const polls = await call('get', '/api/polls');
         dispatch(setPolls(polls));
         dispatch(removeError());
@@ -29,6 +30,7 @@ export const getPolls = () => async(dispatch) =>{
 
 export const getUserPolls = () =>async(dispatch) => {
     try{
+        dispatch({type:SET_POLLS_REQUEST});
         const polls = await call('get', "/api/polls/user");
         dispatch(setPolls(polls));
         dispatch(removeError());
@@ -44,6 +46,15 @@ export const createPoll = data => async(dispatch) =>{
         const poll = await call('post', '/api/polls', data);
         dispatch(setCurrentPoll(poll));
         dispatch(removeError());
+    }catch(err){
+        dispatch(addError(err.response.data.message));
+    }
+};
+
+export const deletePoll = id => async(dispatch) =>{
+    try{
+       await call('delete', `/api/polls/${id}`);
+
     }catch(err){
         dispatch(addError(err.response.data.message));
     }

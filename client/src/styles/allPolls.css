@@ -1,0 +1,36 @@
+.allPollCont{
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+.allPollContHeading{
+    color: rebeccapurple;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.allPollListCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    
+}
+.allPollListContQues{
+    width:100%;
+    text-align: center;
+    margin: 0.5rem 0;
+    padding: 0.9rem 1.5rem;
+    border: 2px solid rebeccapurple;
+    border-radius:0.2rem;
+    cursor: pointer;
+}
+.allPollListContQues:hover{
+    border: 2px solid rebeccapurple;
+    background-color: rgb(232, 232, 232);
+    box-shadow: 0 0 10px 0 rebeccapurple;
+
+}
+

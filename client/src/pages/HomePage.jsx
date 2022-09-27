@@ -5,7 +5,6 @@ import Polls from '../components/Polls';
 const HomePage = () => {
   return (
     <div>
-    <ErrorMessage/>
         <Polls/>
     </div>
   )

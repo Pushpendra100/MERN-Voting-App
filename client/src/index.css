@@ -7,3 +7,7 @@
 @import "./styles/buttons.css";
 @import "./styles/poll.css";
 @import "./styles/polls.css";
+@import "./styles/home-intro.css";
+@import "./styles/allPolls.css";
+@import "./styles/loader.css";
+@import "./styles/my404component.css";

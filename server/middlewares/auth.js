@@ -12,6 +12,6 @@ module.exports = (req, res, next)=>{
             }
         })
     }else{
-        next(Error("No token provided"));
+        next(Error("Not logged in"));
     }
 }

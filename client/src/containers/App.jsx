@@ -1,7 +1,9 @@
 import React from 'react';
+import WebFont from "webfontloader";
 import {Provider} from "react-redux";
 import decode from "jwt-decode";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+
 
 import {store} from "../store"
 import { setCurrentUser,addError, setToken } from '../store/actions';
@@ -21,17 +23,21 @@ if(localStorage.jwtToken){
 
 }
 
+
+
 const App = () =>{
+
+  WebFont.load({
+    google:{
+      families:["Roboto","Droid Sans","Chilanka","Oxygen","Work Sans"]
+    }
+  })
 
     return (
       <Provider store={store}>
       <Router>
-
-
          <NavBar/>
          <RouteViews/>
-
-
       </Router>
       </Provider>
     )

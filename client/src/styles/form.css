@@ -1,9 +1,42 @@
 .form{
-    width: 50%;
-    margin: 1rem auto;
-    background-color: var(--blue);
+    width: 60%;
+    margin: 5.5rem auto;
+    background-color: rebeccapurple;
+    animation: boxshadowAnim 0.7s ease-in-out forwards;
     padding: 1rem;
     border-radius: 0.4rem;
+}
+.form-heading{
+    color: white;
+    font-size: 2rem;
+    margin: auto;
+    margin: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    animation: slideUp 0.7s ease-in-out forwards;
+}
+.form-heading span{
+    transition: letter-spacing 0.5s ease-in-out;
+    user-select: none;
+}
+.form-heading span:hover{
+    letter-spacing:0.3rem;
+}
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+}
+@keyframes boxshadowAnim {
+    0% {
+        box-shadow: 0rem 0rem 0 0 black;
+      }
+      100% {
+        box-shadow: 1rem 1.5rem 0 0 black;
+      }   
 }
 .form-input{
     width: 100%;
@@ -19,4 +52,85 @@
     color: white;
     text-transform: uppercase;
     font-size: 0.8rem;
+}
+.form-button{
+    border: 2px solid white;
+    border-radius: 0.3rem;
+    color: white;
+    background-color: transparent;
+    font-size: 1.1rem;
+    margin: 1rem;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.4s ease-in-out;
+}
+.form-button:hover{
+    background-color: white;
+    color: rebeccapurple;
+    box-shadow: 0 0 0.1rem 0 black;
+    cursor: pointer;
+}
+.form-view-option-Box{
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem 0;
+}
+.form-view-option{
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.form-view-option-input{
+    margin: 0 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+.buttonCreatePoll{
+    width: 15rem;
+    background-color: var(--light);
+    border: 2px solid var(--blue);
+    border-radius: 0.3rem;
+    color: var(--blue);
+    font-size: 1.1rem;
+    margin: 1rem;
+    padding: 0.5rem 0;
+    transition: all 0.4s ease-out;
+}
+.buttonCreatePoll:hover{
+    background-color: white;
+    color: rebeccapurple;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width:800px) {
+    .form{
+        width: 70%;
+        margin-top: 4.5rem;
+    }
+    .button-box{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    .buttonCreatePoll{
+        width: 80%;
+        margin: 0.4rem 0;
+    }
+    .buttonCreatePoll:last-child{
+        margin: 1rem 0;
+    }
+
+}
+@media screen and (max-width:335px) {
+.form-view-option-Box{
+    display: flex;
+    flex-direction: column;
+}
+
 }

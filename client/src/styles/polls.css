@@ -1,21 +1,169 @@
-.polls{
+.userPollCont{
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+.userPollContHeading{
+    color: rebeccapurple;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.userPollListCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    
+}
+.userPollBox{
+    width: 100%;
+    padding: 0.9rem 1.5rem;
     margin: 1rem 0;
+    border: 2px solid rebeccapurple;
+
 }
-.polls li{
-    background-color: var(--light);
-    color: var(--blue);
-    padding: 0.5rem;
+.userPollBox:hover{
+    box-shadow: 0 0 10px 0 rebeccapurple;
+    
+}
+.userPollListContQues{
     text-align: center;
-    text-decoration: none;
+    padding: 0.9rem 0.5rem;
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
-    width: 80%;
-    border: 2px solid transparent;
-    border-radius: 0.2rem;
-    margin: auto;
+    font-size: 1.1rem;
 }
-.polls li:nth-child(odd){
-    background-color: white;
+
+.userPollBoxOptions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
 }
-.polls li:hover{
-    border: 2px solid var(--blue);
+
+.userPollBoxView{
+    color: white;
+    background-color: rebeccapurple;
+    text-transform: capitalize;
+    border-radius: 0.1rem;
+    /* padding: 0.2rem 0.5rem; */
+    padding: 0.2rem 0;
+    text-align: center;
+    width: 5rem;
+    user-select: none;
+    margin: 0 1rem;
+
 }
+
+.userPollBoxStatusEnded{
+    color: white;
+    background-color: rgb(150, 150, 150);
+    text-transform: capitalize;
+    border-radius: 0.1rem;
+    /* padding: 0.2rem 0.5rem; */
+    padding: 0.2rem 0;
+    text-align: center;
+    width: 5rem;
+    user-select: none;
+    margin: 0 1rem;
+}
+.userPollBoxStatusGoingOn{
+    color: white;
+    /* background-color: var(--blue); */
+    background-color: rgb(45, 148, 212);
+    text-transform: capitalize;
+    border-radius: 0.1rem;
+    /* padding: 0.2rem 0.5rem; */
+    padding: 0.2rem 0;
+    text-align: center;
+    width: 5rem;
+    user-select: none;
+    margin: 0 1rem;
+}
+.userPollBoxTime{
+    color: black;
+    text-align: center;
+    border-radius: 0.1rem;
+    padding: 0.2rem 0.5rem;
+    padding-top: 0.4rem;
+    user-select: none;
+    margin: 0 1rem;
+}
+.userPollBoxOptions button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+
+
+}
+.userPollBoxOptions button:hover{
+    border-bottom: 2px solid rebeccapurple;
+
+}
+
+.noPollBox{
+    margin-top: 3rem;
+    font-size: 1.3rem;
+    color: rebeccapurple;
+}
+@media screen and (max-width:800px) {
+    .userPollContHeading{
+        width: 80%;
+        text-align: center;
+    }
+    .userPollListCont{
+        width: 80%;
+    }
+    .userPollBox{
+        padding: 0.9rem 1rem;
+    
+    }
+    .userPollBoxOptions{
+        font-size: 0.9rem;
+    }
+    .userPollBoxView{
+        margin: 0 0.7rem;
+    
+    }
+    
+    .userPollBoxStatusEnded{
+        margin: 0 0.7rem;
+    }
+    .userPollBoxStatusGoingOn{
+        margin: 0 0.7rem;
+    }
+    .userPollBoxTime{
+        margin: 0 0.7rem;
+    }
+    .userPollBoxOptions button{
+        margin: 0 0.7rem;  
+    }
+    .allPollBoxTime{
+        margin: 0 0.7rem;
+        text-align: center;
+    }
+    }
+
+    @media screen and (max-width:370px) {
+        .userPollBoxTime{
+            margin: 0;
+        }
+        .userPollBoxView{
+            margin: 0 0.5rem;
+        }
+        .userPollBoxStatusEnded{
+            margin: 0 0.5rem;
+        }
+        .userPollBoxStatusGoingOn{
+            margin: 0 0.5rem;
+        }
+    }

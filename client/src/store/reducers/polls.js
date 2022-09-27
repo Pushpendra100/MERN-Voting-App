@@ -1,12 +1,20 @@
-import {SET_CURRENT_POLL, SET_POLLS,SET_CURRENT_POLL_REQUEST} from "../actionTypes"
+import {SET_CURRENT_POLL,SET_POLLS_REQUEST, SET_POLLS,SET_CURRENT_POLL_REQUEST} from "../actionTypes"
 
 
 export const polls = (state = [], action) =>{
 
     switch (action.type) {
 
+        case SET_POLLS_REQUEST:
+            return {
+                loading:true,
+                ...state
+            }
         case SET_POLLS:
-            return action.polls;
+            return {
+                loading:false,
+                polls: action.polls
+            };
             
         default:
             return state;

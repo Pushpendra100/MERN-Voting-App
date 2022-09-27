@@ -8,7 +8,7 @@ const AuthPage = (props) => {
   return (
     <div>
         <Auth authType={props.authType}/>
-        <ErrorMessage/>
+        {/* <ErrorMessage/> */}
     </div>
   )
 }
