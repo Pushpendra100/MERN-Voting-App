@@ -14,7 +14,7 @@ const connectDatabase = require("./config/database")
 
 
 if(process.env.NODE_ENV !== "PRODUCTION"){
-    require('dotenv').config();
+    require('dotenv').config({path:__dirname+'/.env'});
 }
 
 connectDatabase();
