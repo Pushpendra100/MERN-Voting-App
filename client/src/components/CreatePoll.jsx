@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {useAlert} from "react-alert";
 
-import {removeError, createPoll} from "../store/actions";
+import MetaData from '../containers/MetaData';
+import {createPoll} from "../store/actions";
 import Loader from './Loader';
 
 
@@ -87,7 +88,6 @@ function handleAnswer(e){
 const optionss = [...poll.options]
 optionss[index] = e.target.value;
 
-
 setPoll(poll => ({
   ...poll,
   options:optionss
@@ -109,8 +109,23 @@ const handleSubmit = (e) =>{
   if(poll.question.length !== 0 && poll.options.length >=2 && emptyOptions.length === 0 ){
 
           if(finalTime.length !==0){
+
+                      let optionRepeated;
+                      for (let i = 0; i < poll.options.length; i++) {
+                        for (let j = i+1; j < poll.options.length; j++) {
+                          if(poll.options[i].replace(/\s+/g, ' ').trim()===poll.options[j].replace(/\s+/g, ' ').trim()){
+                            optionRepeated = true;
+                          }
+                        }
+                      }
+
+                      if(!optionRepeated){
                         dispatch(createPoll({...poll,finalTime:Date.parse(finalTime),view:statusOption}));
                         alert.success("Successfully poll created")
+                      }else{
+                        alert.error("Same option can't be repeated")
+
+                      }
 
 
             }else{
@@ -130,7 +145,7 @@ const handleSubmit = (e) =>{
   }
 
 
- }, [currentPoll,navigate])
+ }, [currentPoll,navigate,poll])
 
 
 
@@ -139,6 +154,8 @@ const handleSubmit = (e) =>{
     <Fragment>
       {
         loading?<Loader/>:(
+          <Fragment>
+        <MetaData title="Poll Cruiser | Create Poll"/>
           <div>
       <form className='form' onSubmit={handleSubmit}>
         <label className='form-label' htmlFor="question">Question</label>
@@ -178,7 +195,7 @@ const handleSubmit = (e) =>{
 
       </form>
     </div>
-        )
+    </Fragment>)
       }
     </Fragment>
   )

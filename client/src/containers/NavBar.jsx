@@ -11,17 +11,37 @@ const NavBar = () => {
    const dispatch = useDispatch();
   const {isAuthenticated,user} = useSelector(state => state.auth);
   const [name, setName] = useState("")
+  const [fullName, setFullName] = useState("")
   const [menu, setMenu] = useState(false)
 
 useEffect(() => {
 
-  if(typeof user === "object"){
-    setName(user.username)
-  }else{
-    setName(user)
-  }
+      if(isAuthenticated)
+    {  if(typeof user === "object"){
 
-}, [user])
+            setFullName(user.username)
+
+            if(user.username.length > 17){
+              let subName = user.username.slice(0,17)
+              setName(`${subName}...`)
+            }else{
+              setName(user.username)
+            }
+
+      }else{
+
+            setFullName(user)
+            
+            if(user.length > 17){
+              let subName = user.slice(0,17)
+              setName(`${subName}...`)
+            }else{
+              setName(user)
+            }
+      }
+    }
+
+}, [user, isAuthenticated])
 
 
   const handleLogout = () => {
@@ -62,7 +82,7 @@ const handleClose = () =>{
                                          <li><Link className='navbar-menu-item' to='/login' onClick={handleClose}>Login</Link></li></Fragment>}
           {isAuthenticated && <Fragment><li><Link className='navbar-menu-item' to='/poll/new' onClick={handleClose}>Create Poll</Link></li>
                                         <li><Link className='navbar-menu-item' to='/' onClick={handleLogout}>Logout</Link></li></Fragment>}     
-      {isAuthenticated && <p className='navbar-menu-user'>Logged in as <span>{name}</span></p>} 
+      {isAuthenticated && <p className='navbar-menu-user'>Logged in as <span>{fullName}</span></p>} 
       </ul>
     </div>)}
     </Fragment>

@@ -6,7 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 
 import { getCurrentPoll, vote,removeError } from '../store/actions';
-// import ErrorMessage from './ErrorMessage';
 import Loader from './Loader';
 
 
@@ -19,7 +18,7 @@ const Poll = (props) => {
     ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-    const {poll, loading,error,id:userId} = useSelector(state => ({loading:state.currentPoll.loading, poll:state.currentPoll.poll,error:state.error.message,id:state.auth.user.id}))
+    const {poll, error,id:userId, isAuth} = useSelector(state => ({loading:state.currentPoll.loading, poll:state.currentPoll.poll,error:state.error.message,id:state.auth.user.id, isAuth: state.auth.isAuthenticated}))
 
     useEffect(() => {   
         if(error){
@@ -43,7 +42,7 @@ const Poll = (props) => {
 
     const handleVote = (id, answer) =>{
         if(Date.parse(poll.finalTime) > Date.now()){
-            if(userId){
+            if(isAuth){
                 if(!poll.voted.includes(userId)){
                     dispatch(vote(id, answer))
                 }else{

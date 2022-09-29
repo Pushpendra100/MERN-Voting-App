@@ -3,11 +3,11 @@ import { useDispatch, useSelector, } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {useAlert} from "react-alert";
 
-
+import MetaData from '../containers/MetaData';
 import {authUser} from "../store/actions";
 import { removeError } from '../store/actions';
 
-const Auth = (props) => {
+const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Auth = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const {authType} = props;
+        const authType = "login";
         if(username && password){
             dispatch(authUser(authType, {username, password}))
         }else{
@@ -48,8 +48,9 @@ const Auth = (props) => {
 
         return (
         <Fragment>
+        <MetaData title="Poll Cruiser | Login"/>
         <form className='form' onSubmit={handleSubmit}>
-            <h3 className='form-heading'><span>{props.authType}</span></h3>
+            <h3 className='form-heading'><span>login</span></h3>
             <label className='form-label' htmlFor="username">username</label>
                 <input className='form-input' type="text" value={username} name="username" onChange={handleChange} autoComplete="on" />
 
@@ -64,4 +65,4 @@ const Auth = (props) => {
     }
 
 
-export default Auth;
+export default Login;

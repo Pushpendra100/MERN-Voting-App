@@ -18,7 +18,7 @@ export const setCurrentPoll = poll => ({
 export const getPolls = () => async(dispatch) =>{
     try{
         dispatch({type:SET_POLLS_REQUEST});
-        const polls = await call('get', '/api/polls');
+        const polls = await call('get', 'http://localhost:4000/api/polls ');
         dispatch(setPolls(polls));
         dispatch(removeError());
 
@@ -43,7 +43,9 @@ export const getUserPolls = () =>async(dispatch) => {
 
 export const createPoll = data => async(dispatch) =>{
     try{
+        console.log(data);
         const poll = await call('post', '/api/polls', data);
+        console.log(poll);
         dispatch(setCurrentPoll(poll));
         dispatch(removeError());
     }catch(err){

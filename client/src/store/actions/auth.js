@@ -31,8 +31,7 @@ export const authUser = (path, userData) => async(dispatch) =>{
  
             localStorage.setItem('jwtToken', data.token);
             setsToken(data.token);
-
-            dispatch(setCurrentUser({username:data.username,id:data._id}))
+            dispatch(setCurrentUser({username:data.username,id:data.id}))
 
             dispatch(removeError());
 

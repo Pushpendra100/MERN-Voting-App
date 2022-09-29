@@ -2,6 +2,7 @@ import React,{Fragment, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
+import MetaData from '../containers/MetaData';
 import { getPolls, getCurrentPoll } from '../store/actions';
 import Loader from './Loader';
 
@@ -37,6 +38,7 @@ const Polls = () => {
     {
       loading?<Loader/> : (
         <Fragment>
+        <MetaData title="Poll Cruiser | All Polls"/>
         {
           polls && (
             <div className="userPollCont">

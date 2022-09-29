@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Poll from "../components/Poll";
-import ErrorMessage from '../components/ErrorMessage';
 
 
 const PollPage = () => {

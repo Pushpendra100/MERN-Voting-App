@@ -8,7 +8,7 @@ exports.register = async(req, res, next) =>{
         const user = await db.User.create(req.body);
         const {id, username} = user;
 
-        const token = jwt.sign({id,username},process.env.SECRET);
+        const token = jwt.sign({id,username},process.env.JWT_SECRET);
         res.status(201).json({
             id,
             username,
@@ -28,7 +28,7 @@ exports.login = async (req, res, next)=>{
         const valid = await user.comparePassword(req.body.password);
 
         if(valid){
-            const token = jwt.sign({id, username}, process.env.SECRET);
+            const token = jwt.sign({id, username}, process.env.JWT_SECRET);
 
             res.json({
                 id,

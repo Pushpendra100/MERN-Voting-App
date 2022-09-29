@@ -30,6 +30,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 60%;
+    margin-right: 2rem;
 }
 .navbar-item{
     display: inline-block;
@@ -50,6 +51,7 @@
     color: var(--background);
     user-select: none;
     font-size: 1rem;
+    font-style:italic;
 }
 .navbar-user span{
 font-weight: 500;
@@ -57,7 +59,7 @@ font-weight: 500;
 .navbar-menu{
     display: none;
 }
-@media screen and (max-width:800px) {
+@media screen and (max-width:900px) {
 
 .container{
     justify-content: space-between;
@@ -116,6 +118,7 @@ font-weight: 500;
     color: rgba(255, 255, 255, 0.502);
     padding: 1rem 0;
     font-size: 1.2rem;
+    font-style:italic;
 
 }
 }

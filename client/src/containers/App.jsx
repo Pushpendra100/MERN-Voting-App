@@ -2,7 +2,7 @@ import React from 'react';
 import WebFont from "webfontloader";
 import {Provider} from "react-redux";
 import decode from "jwt-decode";
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
 
 import {store} from "../store"

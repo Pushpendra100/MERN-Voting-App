@@ -1,8 +1,8 @@
 import React,{Fragment, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link  } from "react-router-dom";
-// import {CgMouse} from "react-icons/cg";
 
+import MetaData from '../containers/MetaData';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { getUserPolls, getCurrentPoll, deletePoll } from '../store/actions';
 import Loader from './Loader';
@@ -52,6 +52,8 @@ const Polls = () => {
     {auth.isAuthenticated && ( 
       <Fragment>
       {polls && (
+        <Fragment>
+        <MetaData title="Poll Cruiser | Home - My Polls"/>
         <div className="userPollCont">
       <h3 className='userPollContHeading'>My Polls</h3>
       <ul className='userPollListCont'>
@@ -75,6 +77,7 @@ const Polls = () => {
       </ul>
       {polls.length === 0 && (<div className='noPollBox'>No Polls to show</div>)}
       </div>
+      </Fragment>
       )}
 
       </Fragment>
@@ -82,7 +85,9 @@ const Polls = () => {
 
     {
       !auth.isAuthenticated && (
-        <div className="home-container">
+        <Fragment>
+        <MetaData title="Poll Cruiser | Home"/>
+          <div className="home-container">
           <h1>Poll Cruiser</h1>
           <div className='home-para'><p>A amazing polling website which can instantly help you to create polls and share with your friends. Nice display of the data in chart 
           and history of all polls is maintained</p></div>
@@ -91,6 +96,8 @@ const Polls = () => {
           <Link className='homeCont-button' to={'/register'}>Register</Link>
         </div>
         </div>
+        </Fragment>
+
       )
     }
     </Fragment>
