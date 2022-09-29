@@ -8,7 +8,7 @@ const handle = require("./handlers");
 const routes = require("./routes");
 
 const app = express();
-const port = process.env.PORT;
+const port = 4000;
 
 const connectDatabase = require("./config/database")
 
@@ -38,4 +38,4 @@ app.use(handle.notFound);
 app.use(handle.errors)
 
 
-app.listen(port, console.log(`Server started on port ${port}`));
+app.listen(process.env.PORT || port, console.log(`Server started on port ${port}`));
