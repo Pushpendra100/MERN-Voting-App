@@ -100,7 +100,7 @@ const Poll = (props) => {
                     <div className='pollDetails'>
                                     <div className='pollDetailsOnlyCreator'>
                                     {
-                                        (poll.user === userId || poll.user._id) && (
+                                        (poll.user === userId) && (
                                             <Fragment>
                                                     {Date.parse(poll.finalTime) > Date.now() && <p className='userPollBoxView'>{poll.view}</p> }
                                                     {
