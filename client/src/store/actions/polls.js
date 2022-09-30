@@ -43,7 +43,6 @@ export const getUserPolls = () =>async(dispatch) => {
 
 export const createPoll = data => async(dispatch) =>{
     try{
-        console.log(data);
         const poll = await call('post', '/api/polls', data);
         console.log(poll);
         dispatch(setCurrentPoll(poll));

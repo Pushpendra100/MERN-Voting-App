@@ -25,11 +25,13 @@ const Poll = (props) => {
             alert.error(error);
             dispatch(removeError());
         };
-        dispatch(getCurrentPoll(props.id));
+
+            dispatch(getCurrentPoll(props.id));
 
 
 
-    }, [dispatch,props.id, alert ,error]);
+
+    }, [dispatch,props.id, alert ,error,isAuth]);
 
 
 
@@ -98,18 +100,23 @@ const Poll = (props) => {
                 !poll? (<Loader/>):(
                     <Fragment>
                     <div className='pollDetails'>
-                                    <div className='pollDetailsOnlyCreator'>
-                                    {
-                                        (poll.user === userId) && (
-                                            <Fragment>
+                                    <div className='pollDetailsOnlyCreatorBox'>
+                                    {poll && (
+                                        <Fragment>
+                                        { 
+                                        (poll.user === userId || poll.user._id === userId) && (
+                                            <div className='pollDetailsOnlyCreator'>
                                                     {Date.parse(poll.finalTime) > Date.now() && <p className='userPollBoxView'>{poll.view}</p> }
                                                     {
                                                     (<Fragment>
                                                     {Date.parse(poll.finalTime) < Date.now()?(<p className='userPollBoxStatusEnded'>Ended</p>):(<p className='userPollBoxStatusGoingOn'>Going on</p>)}
                                                         </Fragment>)
                                                     }
-                                            </Fragment>)               
-                                    }
+                                            </div>)               
+                                        }
+                                        </Fragment>
+                                    )}
+
                                     </div>
 
                                     <div className='pollDetailsAllUser'>

@@ -42,10 +42,12 @@ exports.createPoll = async (req, res, next) =>{
         user.polls.push(poll._id);
         await user.save();
 
-        res.status(201).json({
-            ...poll._doc,
-            user: user._id
-        });
+
+        const createdPoll = await db.Poll.findById(poll._id).populate('user',['username','id']);
+
+        res.status(201).json(createdPoll);
+
+
     }catch(err){
         err.status = 400;
         next(err);
@@ -99,7 +101,7 @@ exports.vote = async (req, res, next) =>{
         const {answer} = req.body;
 
         if(answer){
-            const poll = await db.Poll.findById(pollId);
+            const poll = await db.Poll.findById(pollId).populate('user',['username','id']);
             if(!poll){
                 throw new Error("No poll found");
             }

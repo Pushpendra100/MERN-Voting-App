@@ -122,6 +122,8 @@ const handleSubmit = (e) =>{
                       if(!optionRepeated){
                         dispatch(createPoll({...poll,finalTime:Date.parse(finalTime),view:statusOption}));
                         alert.success("Successfully poll created")
+                        {currentPoll && navigate(`/poll/${currentPoll._id}`)}
+
                       }else{
                         alert.error("Same option can't be repeated")
 
@@ -133,19 +135,19 @@ const handleSubmit = (e) =>{
             }
           
   }else{
-    alert.error("Please include question and options");
+    alert.error("Please complete question and options");
   }
 };
 
  useEffect(() => {
-  if(poll.question.length !== 0){
-    if(currentPoll){
-      navigate(`/poll/${currentPoll._id}`)
-    }
-  }
+  // if(poll.question.length !== 0){
+  //   if(currentPoll){
+  //     navigate(`/poll/${currentPoll._id}`)
+  //   }
+  // }
 
 
- }, [currentPoll,navigate,poll])
+ }, [currentPoll,navigate])
 
 
 
