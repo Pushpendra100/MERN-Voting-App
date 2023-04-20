@@ -20,5 +20,5 @@ JWT_SECRET
 
 ## Author
 I am **Pushpendra Pal** a student of **IIT Roorkee**.
-**Instagram** Click [Here](https://www.instagram.com/pushpendrapal9683/) 
+**Instagram** Click [Here](https://www.instagram.com/_pushpendra__pal_/) 
 **LinkedIn** Click [Here](https://www.linkedin.com/in/pushpendra-pal100/) 
